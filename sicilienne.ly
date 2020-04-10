@@ -11,6 +11,9 @@
 up = {\change Staff = "up"}
 down = {\change Staff = "down"}
 
+psempre = \markup { \halign #1.4 \dynamic "p" \italic "sempre" }
+pdolce = \markup { \halign #1.4 \dynamic "p" \italic "dolce" }
+
 pedal_fis = _\markup \concat \vcenter {F\sharp}
 pedal_f = _\markup \concat \vcenter {F\natural}
 pedal_ees = _\markup \concat \vcenter {E\flat}
@@ -54,7 +57,7 @@ cello = \new Staff
 {
   \relative {
 	\time 6/8 \key g \minor
-	\clef "bass" r4 r8 r4 d8\p | g4( bes8) d4( g8) \clef "tenor" |
+	\clef "bass" r4 r8 r4 d8_\pdolce | g4( bes8) d4( g8) \clef "tenor" |
 	bes8.( a16 g8) a4( d,8~)( | d8. c16 e8) d8.( c16 e8) |
 	d 4.~ d8 r8 \clef "bass" d,8 | g4( bes8) d4( f8) \clef "tenor" |
 	aes8.( g16 f8) g4 \clef "bass" g,8~( | g8. fis16 a8) g8.( fis16 bes8) |
@@ -88,13 +91,18 @@ harp = \new PianoStaff
 	  g4 <bes-1 d,-3>8 <d, d'>4 g8 |
 	  bes8. a16 g8 a4 d,8 |
 	  r8 <f bes,>8 <e c>8  r8 <f bes,>8 <e c>8 |
-	   <fis a, fis>4. fis4.-1 \clef "bass" |
+	  <fis a, fis>4. fis4.-1 \clef "bass" |
+	  s4. s4. |
+	  s4. s4. \clef "treble" |
+	  g8. fis16 a8 g8. fis16 bes8 |
+	  g4. r8 r8 r8 |
 	}
   }
+
   \new Staff = "down" {
 	\relative {
-	  \time 6/8 \key g \minor \clef "bass" 
-	  g,16_\markup { \harp-pedal #"--^|----" } d'16 \up g16 bes16 d8 \down g,,16 d'16 \up g16 bes16 d8 |
+	  \tempo "Andantino" 4. = 50 \time 6/8 \key g \minor \clef "bass" 
+	  g,16_\markup { \harp-pedal #"--^|----" }_\psempre d'16 \up g16 bes16 d8 \down g,,16 d'16 \up g16 bes16 d8 |
 	  \down g,,16 d'16 \up g16 bes16 d8 \down f,16 g16 \up bes16 d16 g8 |
 	  \down e,16 bes'16 \up d16 g16 bes8 \down f,16 a16 \up d16 f16 a8 \down |
 	  bes,,16-4 f'16-2 f8-2 g8-1 bes,16-4 f'16-2 f8-2 g8-1 |
@@ -107,6 +115,10 @@ harp = \new PianoStaff
 	  \down e,16\pedal_e g16 bes16\pedal_a d16 r8 f,16 a16 d16 f16 r8 |
 	  bes,,16 f'16 f8 g8 bes,16 f'16 f8 g8 |
 	  d,16\pedal_fis a'16 d16 f16-4 a16-3 d16-2 \dampD r8 |
+	  g,16\pedal_f d'16 \up g16 bes16 d8 \down f,16\pedal_ees d'16 \up g,16 bes16 d8 |
+	  \down ees,16\pedal_aes aes16 \up c16 f16 aes8 \down d,,16\pedal_b g16 \up b16 f'16 g8 |
+	  \down c,,16-4\pedal_bes\pedal_fis bes'16-1 bes4-2\pedal_a d,16 c'16 c4 |
+	  g,16 d'16 g16 g16 bes16 d16 g,,16\pedal_b d'16 g16 g16 b16 d16 |
 	}
   }
 >>
