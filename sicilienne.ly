@@ -70,6 +70,8 @@ cello = \new Staff
 }
 
 dampD = << \new CueVoice { \stemOff d,16\damp \glissando d'16 d,,16\damp \glissando d'16 \stemOn} {r8 r8} >>
+raising = << {f16 a16 d16} \new Voice {\stemUp f,16-4 a16-3 d16-2} >>
+
 harp = \new PianoStaff 
   \with {
 	instrumentName = #"Harp "
@@ -83,7 +85,7 @@ harp = \new PianoStaff
 	  s4. s4. \clef "treble" |
 	  s4. s4. |
 	  r8 <f' bes,>8 <e c>8  r8 <f bes,>8 <e c>8 |
-	  <fis a, fis>4. fis4.-1 \clef "bass" |
+	  fis4. fis4.-1 \clef "bass" |
 	  s4. s4. |
 	  s4. s4. \clef "treble" |
 	  e4 ees8\pedal_ees d4 fis8 |
@@ -91,7 +93,7 @@ harp = \new PianoStaff
 	  g4 <bes-1 d,-3>8 <d, d'>4 g8 |
 	  bes8. a16 g8 a4 d,8 |
 	  r8 <f bes,>8 <e c>8  r8 <f bes,>8 <e c>8 |
-	  <fis a, fis>4. fis4.-1 \clef "bass" |
+	  fis4. fis4.-1 \clef "bass" |
 	  s4. s4. |
 	  s4. s4. \clef "treble" |
 	  g8. fis16 a8 g8. fis16 bes8 |
@@ -106,24 +108,25 @@ harp = \new PianoStaff
 	  \down g,,16 d'16 \up g16 bes16 d8 \down f,16 g16 \up bes16 d16 g8 |
 	  \down e,16 bes'16 \up d16 g16 bes8 \down f,16 a16 \up d16 f16 a8 \down |
 	  bes,,16-4 f'16-2 f8-2 g8-1 bes,16-4 f'16-2 f8-2 g8-1 |
-	  d,16\pedal_fis a'16 d16 f16-4 a16-3 d16-2 \dampD r8 |
+	  << \crossStaff{<fis a>4.} \\ {d,16\pedal_fis a'16 d16 \raising} >> \dampD r8 |
 	  g,16\pedal_f d'16 \up g16 bes16 d8 \down f,16\pedal_ees d'16 \up g,16 bes16 d8 |
 	  \down ees,16\pedal_aes f16 \up aes16 c16 f8 \down d,16\pedal_b f16 \up g16 b16 f'8 |
 	  \down c,16-4\pedal_bes\pedal_e bes'16-1 bes4-2 d,16 c'16 c4\pedal_fis |
-	  g,16 d'16 g16 g16 bes16 d16 g,,16 d'16 bes'16 g16 \up d'8 |
+	  g,16 d'16 g16 << {g16 bes16 d16} \new Voice {\stemUp g,16 bes16 d16} >> g,,16 d'16 bes'16 g16 \up d'8 |
 	  \down g,,16 d'16 g16 bes16-4 \up d8 \down f,16\pedal_f g16 bes16 d16-4 \up g8-2 |
 	  \down e,16\pedal_e g16 bes16\pedal_a d16 r8 f,16 a16 d16 f16 r8 |
 	  bes,,16 f'16 f8 g8 bes,16 f'16 f8 g8 |
-	  d,16\pedal_fis a'16 d16 f16-4 a16-3 d16-2 \dampD r8 |
+	  << \crossStaff{<fis a>4.} \\ {d,16\pedal_fis a'16 d16 \raising} >> \dampD r8 |
 	  g,16\pedal_f d'16 \up g16 bes16 d8 \down f,16\pedal_ees d'16 \up g,16 bes16 d8 |
 	  \down ees,16\pedal_aes aes16 \up c16 f16 aes8 \down d,,16\pedal_b g16 \up b16 f'16 g8 |
 	  \down c,,16-4\pedal_bes\pedal_fis bes'16-1 bes4-2\pedal_a d,16 c'16 c4 |
-	  g,16 d'16 g16 g16 bes16 d16 g,,16\pedal_b d'16 g16 g16 b16 d16 |
+	  g,16 d'16 g16 << {g16 bes16 d16} \new Voice {\stemUp g,16 bes16 d16} >>
+	  g,,16\pedal_b d'16 g16 << {g16 b16 d16} \new Voice {\stemUp g,16 b16 d16} >>|
 	}
   }
 >>
 
-{
+\score {
   <<
 	\cello
 	\harp
